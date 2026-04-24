@@ -1,4 +1,5 @@
 let days = 3;
+const checkedItems = {};
 
 function calcRequired(item, persons, days) {
   switch (item.calcType) {
@@ -41,10 +42,18 @@ function render(persons, activeConditions, days) {
     const ul = document.createElement("ul");
     for (const item of items) {
       const qty = calcRequired(item, persons, days);
+      const isChecked = checkedItems[item.id] ?? false;
       const li = document.createElement("li");
       li.innerHTML = `
         <span class="item-name">${item.name}</span>
-        <span class="item-qty">${qty}<small>${item.unit}</small></span>
+        <div class="item-right">
+          <span class="item-qty">${qty}<small>${item.unit}</small></span>
+          <label class="switch">
+            <input type="checkbox" data-id="${item.id}" ${isChecked ? "checked" : ""} />
+            <span class="switch-track"></span>
+          </label>
+          <span class="switch-label ${isChecked ? "has" : ""}">${isChecked ? "ある" : "ない"}</span>
+        </div>
       `;
       ul.appendChild(li);
     }
@@ -57,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const personsInput = document.getElementById("persons");
   const condCheckboxes = document.querySelectorAll(".cond-checkbox");
   const tabBtns = document.querySelectorAll(".tab-btn");
+  const stockList = document.getElementById("stock-list");
 
   function getActiveConditions() {
     const active = new Set();
@@ -71,6 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const persons = isNaN(val) || val < 1 ? 1 : val;
     render(persons, getActiveConditions(), days);
   }
+
+  // スイッチ操作はコンテナへの委譲で管理（render後もリスナーが生き続ける）
+  stockList.addEventListener("change", e => {
+    const input = e.target.closest("input[data-id]");
+    if (!input) return;
+    const id = parseInt(input.dataset.id, 10);
+    checkedItems[id] = input.checked;
+    const label = input.closest("li").querySelector(".switch-label");
+    label.textContent = input.checked ? "ある" : "ない";
+    label.classList.toggle("has", input.checked);
+  });
 
   tabBtns.forEach(btn => {
     btn.addEventListener("click", () => {
