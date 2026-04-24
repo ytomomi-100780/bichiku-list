@@ -24,16 +24,16 @@ const stockItems = [
   { id: 16, name: "ゴミ袋",             category: "生活用品", calcType: "fixed",              value: 10, unit: "枚" },
 
   // 子ども用品
-  { id: 17, name: "粉ミルク・液体ミルク", category: "子ども用品", calcType: "per_person_per_day", value: 1, unit: "缶",  conditions: ["child"] },
-  { id: 18, name: "おむつ",               category: "子ども用品", calcType: "per_person_per_day", value: 8, unit: "枚",  conditions: ["child"] },
-  { id: 19, name: "離乳食・子ども用食品", category: "子ども用品", calcType: "per_person_per_day", value: 3, unit: "食",  conditions: ["child"] },
+  { id: 17, name: "粉ミルク・液体ミルク", category: "子ども用品", calcType: "fixed", value: 1, unit: "缶",    conditions: ["child"] },
+  { id: 18, name: "おむつ",               category: "子ども用品", calcType: "fixed", value: 8, unit: "枚",    conditions: ["child"] },
+  { id: 19, name: "離乳食・子ども用食品", category: "子ども用品", calcType: "fixed", value: 3, unit: "食",    conditions: ["child"] },
 
   // 女性用品
-  { id: 20, name: "生理用品",            category: "女性用品",   calcType: "per_person",         value: 1, unit: "セット", conditions: ["female"] },
-  { id: 21, name: "サニタリーショーツ",  category: "女性用品",   calcType: "per_person",         value: 2, unit: "枚",  conditions: ["female"] },
+  { id: 20, name: "生理用品",             category: "女性用品",   calcType: "fixed", value: 1, unit: "セット", conditions: ["female"] },
+  { id: 21, name: "サニタリーショーツ",   category: "女性用品",   calcType: "fixed", value: 2, unit: "枚",    conditions: ["female"] },
 
   // 高齢者用品
-  { id: 22, name: "介護食",             category: "高齢者用品", calcType: "per_person_per_day", value: 3, unit: "食",  conditions: ["elderly"] },
-  { id: 23, name: "常備薬・お薬手帳",   category: "高齢者用品", calcType: "per_person",         value: 1, unit: "式",  conditions: ["elderly"] },
-  { id: 24, name: "大人用おむつ",       category: "高齢者用品", calcType: "per_person_per_day", value: 4, unit: "枚",  conditions: ["elderly"] },
+  { id: 22, name: "介護食",              category: "高齢者用品", calcType: "fixed", value: 3, unit: "食",    conditions: ["elderly"] },
+  { id: 23, name: "常備薬・お薬手帳",    category: "高齢者用品", calcType: "fixed", value: 1, unit: "式",    conditions: ["elderly"] },
+  { id: 24, name: "大人用おむつ",        category: "高齢者用品", calcType: "fixed", value: 4, unit: "枚",    conditions: ["elderly"] },
 ];
