@@ -1,4 +1,10 @@
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: "Hiragino Sans", "Meiryo", sans-serif;
@@ -7,7 +13,9 @@ body {
   min-height: 100vh;
 }
 
-.hidden { display: none; }
+.hidden {
+  display: none;
+}
 
 /* ヘッダー */
 header {
@@ -47,7 +55,9 @@ header p {
   background: #fff;
   color: #d94f3d;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .tab-btn.active {
@@ -136,13 +146,15 @@ main {
 }
 
 @media (max-width: 600px) {
-  #stock-list { grid-template-columns: 1fr; }
+  #stock-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 .category-section {
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
@@ -156,7 +168,9 @@ main {
   letter-spacing: 0.05em;
 }
 
-.category-section ul { list-style: none; }
+.category-section ul {
+  list-style: none;
+}
 
 .category-section li {
   display: flex;
@@ -167,7 +181,9 @@ main {
   gap: 8px;
 }
 
-.category-section li:last-child { border-bottom: none; }
+.category-section li:last-child {
+  border-bottom: none;
+}
 
 .item-name {
   font-size: 0.9rem;
@@ -234,8 +250,12 @@ main {
   transition: transform 0.2s;
 }
 
-.switch input:checked + .switch-track { background: #d94f3d; }
-.switch input:checked + .switch-track::before { transform: translateX(20px); }
+.switch input:checked + .switch-track {
+  background: #d94f3d;
+}
+.switch input:checked + .switch-track::before {
+  transform: translateX(20px);
+}
 
 .switch-wrap {
   display: flex;
@@ -250,13 +270,23 @@ main {
   min-width: 22px;
   text-align: center;
   opacity: 0.2;
-  transition: opacity 0.2s, color 0.2s;
+  transition:
+    opacity 0.2s,
+    color 0.2s;
 }
 
-.switch-label-off { color: #555; }
-.switch-label-off.active { opacity: 1; }
-.switch-label-on { color: #d94f3d; }
-.switch-label-on.active { opacity: 1; }
+.switch-label-off {
+  color: #555;
+}
+.switch-label-off.active {
+  opacity: 1;
+}
+.switch-label-on {
+  color: #d94f3d;
+}
+.switch-label-on.active {
+  opacity: 1;
+}
 
 /* ボタン */
 .gen-btn {
@@ -272,7 +302,9 @@ main {
   transition: background 0.15s;
 }
 
-.gen-btn:hover { background: #555; }
+.gen-btn:hover {
+  background: #555;
+}
 
 .back-btn {
   display: inline-flex;
@@ -290,7 +322,9 @@ main {
   transition: background 0.15s;
 }
 
-.back-btn:hover { background: #f5f5f0; }
+.back-btn:hover {
+  background: #f5f5f0;
+}
 
 .print-btn {
   width: 100%;
@@ -303,7 +337,9 @@ main {
   border: 2px solid #333;
   border-radius: 10px;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
 
 .print-btn:hover {
@@ -315,7 +351,7 @@ main {
 #shopping-list {
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
   overflow: hidden;
 }
 
@@ -351,7 +387,9 @@ main {
   letter-spacing: 0.05em;
 }
 
-.shopping-items { list-style: none; }
+.shopping-items {
+  list-style: none;
+}
 
 .shopping-items li {
   display: flex;
@@ -361,7 +399,9 @@ main {
   border-bottom: 1px solid #f2f2f2;
 }
 
-.shopping-items li:last-child { border-bottom: none; }
+.shopping-items li:last-child {
+  border-bottom: none;
+}
 
 .shopping-row {
   display: flex;
@@ -386,9 +426,13 @@ main {
   flex-shrink: 0;
 }
 
-.priority-radio { cursor: pointer; }
+.priority-radio {
+  cursor: pointer;
+}
 
-.priority-radio input[type="radio"] { display: none; }
+.priority-radio input[type="radio"] {
+  display: none;
+}
 
 .priority-radio span {
   display: inline-block;
@@ -398,7 +442,10 @@ main {
   border: 1.5px solid #e0e0e0;
   border-radius: 4px;
   color: #bbb;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    border-color 0.15s;
 }
 
 .priority-radio input[value="high"]:checked + span {
@@ -420,37 +467,90 @@ main {
 }
 
 .shopping-empty {
-  color: #888;
-  font-size: 0.9rem;
   text-align: center;
-  padding: 24px;
+  padding: 48px 20px;
+}
+
+.empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  background: #e8f5e9;
+  color: #4caf50;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border-radius: 50%;
+}
+
+.empty-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.empty-sub {
+  font-size: 0.85rem;
+  color: #aaa;
 }
 
 /* 印刷 */
 @media print {
-  header, .tab-section, .input-section, .condition-section,
-  .back-btn, .gen-btn, .print-btn {
+  /* 全部一旦消す */
+  body * {
+    visibility: hidden;
+  }
+
+  /* 買い物リストだけ表示 */
+  #shopping-view,
+  #shopping-view * {
+    visibility: visible;
+  }
+
+  #shopping-view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  /* ボタン系は完全非表示 */
+  button {
     display: none !important;
   }
 
-  main {
-    padding: 0;
-    max-width: 100%;
+  header,
+  .tab-section,
+  .input-section,
+  .condition-section {
+    display: none !important;
   }
+}
 
-  /* 印刷時は両方表示 */
-  #check-view,
-  #shopping-view {
-    display: block !important;
-  }
+.tab-section {
+  background: #fff;
+  border-bottom: 2px solid #d94f3d;
+  padding: 12px 20px 0;
+  display: flex;
+  gap: 6px;
+}
 
-  #stock-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.tab-btn {
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  background: #eee;
+  color: #777;
+}
 
-  #shopping-list {
-    box-shadow: none;
-    margin-top: 24px;
-    border-top: 2px solid #333;
-  }
+.tab-btn.active {
+  background: #fff;
+  color: #d94f3d;
+  border: 2px solid #d94f3d;
+  border-bottom: none;
 }
