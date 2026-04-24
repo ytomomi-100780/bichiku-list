@@ -1,8 +1,8 @@
-const DAYS = 3;
+let days = 3;
 
-function calcRequired(item, persons) {
+function calcRequired(item, persons, days) {
   switch (item.calcType) {
-    case "per_person_per_day": return persons * DAYS * item.value;
+    case "per_person_per_day": return persons * days * item.value;
     case "per_person":         return persons * item.value;
     case "fixed":              return item.value;
     default:                   return item.value;
@@ -23,7 +23,7 @@ function groupByCategory(items) {
   }, {});
 }
 
-function render(persons, activeConditions) {
+function render(persons, activeConditions, days) {
   const container = document.getElementById("stock-list");
   container.innerHTML = "";
 
@@ -40,7 +40,7 @@ function render(persons, activeConditions) {
 
     const ul = document.createElement("ul");
     for (const item of items) {
-      const qty = calcRequired(item, persons);
+      const qty = calcRequired(item, persons, days);
       const li = document.createElement("li");
       li.innerHTML = `
         <span class="item-name">${item.name}</span>
@@ -56,6 +56,7 @@ function render(persons, activeConditions) {
 document.addEventListener("DOMContentLoaded", () => {
   const personsInput = document.getElementById("persons");
   const condCheckboxes = document.querySelectorAll(".cond-checkbox");
+  const tabBtns = document.querySelectorAll(".tab-btn");
 
   function getActiveConditions() {
     const active = new Set();
@@ -68,8 +69,16 @@ document.addEventListener("DOMContentLoaded", () => {
   function update() {
     const val = parseInt(personsInput.value, 10);
     const persons = isNaN(val) || val < 1 ? 1 : val;
-    render(persons, getActiveConditions());
+    render(persons, getActiveConditions(), days);
   }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      days = parseInt(btn.dataset.days, 10);
+      tabBtns.forEach(b => b.classList.toggle("active", b === btn));
+      update();
+    });
+  });
 
   personsInput.addEventListener("input", update);
   condCheckboxes.forEach(cb => cb.addEventListener("change", update));

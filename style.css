@@ -26,6 +26,31 @@ header p {
   opacity: 0.85;
 }
 
+.tab-section {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 12px 20px;
+  display: flex;
+  gap: 8px;
+}
+
+.tab-btn {
+  padding: 8px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 2px solid #d94f3d;
+  border-radius: 6px;
+  background: #fff;
+  color: #d94f3d;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+.tab-btn.active {
+  background: #d94f3d;
+  color: #fff;
+}
+
 .input-section {
   background: #fff;
   border-bottom: 1px solid #e0e0e0;
