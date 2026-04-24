@@ -1,4 +1,6 @@
 let days = 3;
+let currentPersons = 1;
+let currentConditions = new Set();
 const checkedItems = {};
 
 function calcRequired(item, persons, days) {
@@ -65,6 +67,27 @@ function render(persons, activeConditions, days) {
   }
 }
 
+function generateShoppingList() {
+  const visible = filterItems(stockItems, currentConditions);
+  const toBuy = visible.filter(item => !(checkedItems[item.id] ?? false));
+  const container = document.getElementById("shopping-list");
+
+  if (toBuy.length === 0) {
+    container.innerHTML = '<p class="shopping-empty">「ない」アイテムはありません</p>';
+    return;
+  }
+
+  const rows = toBuy.map(item => {
+    const qty = calcRequired(item, currentPersons, days);
+    return `<li><label><input type="checkbox" /><span>${item.name}　${qty}${item.unit}</span></label></li>`;
+  }).join("");
+
+  container.innerHTML = `
+    <h3 class="shopping-title">買い物リスト</h3>
+    <ul class="shopping-items">${rows}</ul>
+  `;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const personsInput = document.getElementById("persons");
   const condCheckboxes = document.querySelectorAll(".cond-checkbox");
@@ -81,11 +104,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function update() {
     const val = parseInt(personsInput.value, 10);
-    const persons = isNaN(val) || val < 1 ? 1 : val;
-    render(persons, getActiveConditions(), days);
+    currentPersons = isNaN(val) || val < 1 ? 1 : val;
+    currentConditions = getActiveConditions();
+    render(currentPersons, currentConditions, days);
   }
 
-  // スイッチ操作はコンテナへの委譲で管理（render後もリスナーが生き続ける）
   stockList.addEventListener("change", e => {
     const input = e.target.closest("input[data-id]");
     if (!input) return;
@@ -103,6 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
       update();
     });
   });
+
+  document.getElementById("gen-shopping-list").addEventListener("click", generateShoppingList);
 
   personsInput.addEventListener("input", update);
   condCheckboxes.forEach(cb => cb.addEventListener("change", update));
